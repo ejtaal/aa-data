@@ -5,6 +5,6 @@ for path in img/*; do
 	for i in $path/*/*png; do 
 		identify -format "%d/%f,%w,%h,%[fx:w/h]" "$i"
 	done | tee ${book}.csv
-	./analyse-csv.pl ${book}.csv -1 | tee ${book}.report.txt
+	./src/analyse-csv.pl ${book}.csv -1 | tee ${book}.report.txt
 done
 

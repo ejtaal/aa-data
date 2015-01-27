@@ -41,7 +41,9 @@ foreach my $value ( @data) {
 print "=== Full report: ===\n";
 foreach my $index (0 .. $#csv_data) {
 	# Calc std dev of this file:
+	$csv_data[$index][0] =~ s/^.*\///;
 	$csv_data[$index][4] = ($csv_data[$index][3] - $mean) / $prms;
+	$csv_data[$index][5] = ($csv_data[$index][3] - $mean) / $prms;
 	printf "%5s %s %dx%d %0.2f %0.2f\n", $index+1, $csv_data[$index][0], 
 		$csv_data[$index][1], $csv_data[$index][2], $csv_data[$index][3], 
 		$csv_data[$index][4];
@@ -59,14 +61,13 @@ for (my $i = 0; $i <= $num_buckets; $i++) {
 
 print "=== Wide ones out (stddev > 3): ===\n";
 foreach my $index (0 .. $#csv_data) {
-	# Calc std dev of this file:
-	if ($csv_data[$index][4] > 3) { print $index+1; print " "; }
+	#print "$index ".$csv_data[$index][4]."\n";
+	if ($csv_data[$index][4] > 3) { print $csv_data[$index][0]; print " "; }
 }
 
 print "\n=== Thin ones out (stddev < $minstddev): ===\n";
 foreach my $index (0 .. $#csv_data) {
-	# Calc std dev of this file:
-	if ($csv_data[$index][4] < $minstddev) { print $index+1; print " "; }
+	if ($csv_data[$index][4] < $minstddev) { print $csv_data[$index][0]; print " "; }
 }
 print "\n";
 

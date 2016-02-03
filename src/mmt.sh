@@ -3,11 +3,11 @@ PREFIX=mmt
 BASE=$HOME/github/aa-data/source/6.2/$PREFIX
 OUTPUT=$HOME/github/aa-data/img/$PREFIX
 # Special 2 page layout counter:
-j=0
+j=1
 #for i in {49..503}; do
 for i in {50..503}; do
 	if [ "$j" = 0 ]; then
-		j=$((i*2))
+		j=$((i*2+1))
 	fi
 	div=$((i/100))	
 	divj=$((j/100))	

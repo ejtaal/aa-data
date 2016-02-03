@@ -1,18 +1,22 @@
 #!/bin/bash
-PREFIX=qab
+PREFIX=mml
 BASE=$HOME/github/aa-data/source/6.2/$PREFIX
 OUTPUT=$HOME/github/aa-data/img/$PREFIX
-PDF="$HOME/github/aa-data/source/$PREFIX.pdf"
+PDF="$HOME/github/aa-data/source/mml.pdf"
 # Use 1 for pdfimages output, as that starts with 0
 ADJUST=1
-#for i in {0..223}; do
-for i in {0..223}; do
+#for i in {200..202}; do
+for i in {0..2979}; do
 	div=$((i/100))	
 	mkdir -p $OUTPUT/$div $BASE/$div
 	#for j in $BASE/$i/*pbm; do
-	#convert -verbose -density 300 "${PDF}[$i]" $BASE/$div/$i.png
+	convert -verbose -density 300 "${PDF}[$i]" "$BASE/$PREFIX-$(printf %03d $i).jpg"
 	#convert $BASE/uqq-${i}.jpg -chop  0x50 $BASE/uqq-${i}-chop.jpg
 		#--despeckle=aggressive \
+	scantailor-cli -v --dpi=300 --output-dpi=300 \
+		--layout=1 \
+		--color-mode=black_and_white \
+		"$BASE/$PREFIX-$(printf %03d $i).jpg" $BASE/
 		#"$BASE/$PREFIX-$(printf %04d $i).jpg" $BASE/$div/
 		#--color-mode=color_grayscale \
 		#--despeckle=aggressive \
@@ -26,23 +30,22 @@ for i in {0..223}; do
 #		-colors 256
 #		"$BASE/$PREFIX-$(printf %03d $i).png"
 #	ls -l "$BASE/$PREFIX-$(printf %03d $i).png"
-	convert -verbose \
-		-density 300 \
-		"$PDF[$i]" \
-		-background white -alpha remove \
+	convert -verbose "$BASE/$PREFIX-$(printf %03d $i).tif" \
 		-trim \
-		+repage \
 		-strip +profile '*' \
+		+repage \
 		-adaptive-resize 1000 \
+		-colorspace Gray \
 		-depth 2 \
-		-colors 4 \
 		"$OUTPUT/$div/$PREFIX-$(printf %04d $j).png"
-		#-transparent-color white \
+		#-colors 4 \
+#		-colors 2 \
 #		-fuzz 50% \
 #		-strip +profile '*' \
 #		+repage \
 #		-adaptive-resize 1000 \
 #		-colorspace Gray \
+#		-depth 2 \
 
 
 		#-threshold 20% \

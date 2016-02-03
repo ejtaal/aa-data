@@ -1,12 +1,12 @@
 #!/bin/bash
-PREFIX=qab
+PREFIX=elq
 BASE=$HOME/github/aa-data/source/6.2/$PREFIX
 OUTPUT=$HOME/github/aa-data/img/$PREFIX
-PDF="$HOME/github/aa-data/source/$PREFIX.pdf"
-# Use 1 for pdfimages output, as that starts with 0
+PDF="$HOME/github/aa-data/source/elq.pdf"
+# Use 1 for pdfimages/convert output, as that starts with 0
 ADJUST=1
-#for i in {0..223}; do
-for i in {0..223}; do
+#for i in {200..201}; do
+for i in {0..1211}; do
 	div=$((i/100))	
 	mkdir -p $OUTPUT/$div $BASE/$div
 	#for j in $BASE/$i/*pbm; do
@@ -33,10 +33,15 @@ for i in {0..223}; do
 		-trim \
 		+repage \
 		-strip +profile '*' \
-		-adaptive-resize 1000 \
-		-depth 2 \
-		-colors 4 \
+		-filter Quadratic \
+		-resize 1000 \
+		-sharpen 3 \
+		-depth 3 \
+		-colors 12 \
 		"$OUTPUT/$div/$PREFIX-$(printf %04d $j).png"
+		#-depth 3 \
+		#-depth 3 \
+		#-colors 4 \
 		#-transparent-color white \
 #		-fuzz 50% \
 #		-strip +profile '*' \

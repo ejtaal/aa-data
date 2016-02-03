@@ -1,12 +1,12 @@
 #!/bin/bash
-PREFIX=qab
+PREFIX=cql
 BASE=$HOME/github/aa-data/source/6.2/$PREFIX
 OUTPUT=$HOME/github/aa-data/img/$PREFIX
-PDF="$HOME/github/aa-data/source/$PREFIX.pdf"
+PDF="$HOME/github/aa-data/source/cql.pdf"
 # Use 1 for pdfimages output, as that starts with 0
 ADJUST=1
-#for i in {0..223}; do
-for i in {0..223}; do
+#for i in {200..210}; do
+for i in {0..682}; do
 	div=$((i/100))	
 	mkdir -p $OUTPUT/$div $BASE/$div
 	#for j in $BASE/$i/*pbm; do
@@ -35,8 +35,9 @@ for i in {0..223}; do
 		-strip +profile '*' \
 		-adaptive-resize 1000 \
 		-depth 2 \
-		-colors 4 \
+		-colorspace Gray \
 		"$OUTPUT/$div/$PREFIX-$(printf %04d $j).png"
+		#-colors 4 \
 		#-transparent-color white \
 #		-fuzz 50% \
 #		-strip +profile '*' \

@@ -34,7 +34,7 @@ for i in {0..1211}; do
 		+repage \
 		-strip +profile '*' \
 		-filter Quadratic \
-		-resize 1000 \
+		-resize 1250 \
 		-sharpen 3 \
 		-depth 3 \
 		-colors 12 \

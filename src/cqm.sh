@@ -33,7 +33,7 @@ for i in {0..795}; do
 		-trim \
 		-strip +profile '*' \
 		+repage \
-		-adaptive-resize 1000 \
+		-adaptive-resize 1250 \
 		-colorspace Gray \
 		-depth 2 \
 		"$OUTPUT/$div/$PREFIX-$(printf %04d $j).png"

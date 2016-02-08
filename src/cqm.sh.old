@@ -14,8 +14,7 @@ for i in {0..795}; do
 		#--despeckle=aggressive \
 	scantailor-cli -v --dpi=300 --output-dpi=300 \
 		--layout=1 \
-		--white-margins \
-		--color-mode=color_grayscale \
+		--color-mode=black_and_white \
 		"$BASE/$PREFIX-$(printf %03d $i).jpg" $BASE/
 		#"$BASE/$PREFIX-$(printf %04d $i).jpg" $BASE/$div/
 		#--color-mode=color_grayscale \
@@ -35,16 +34,9 @@ for i in {0..795}; do
 		-strip +profile '*' \
 		+repage \
 		-adaptive-resize 1250 \
-		-depth 3 \
+		-colorspace Gray \
+		-depth 2 \
 		"$OUTPUT/$div/$PREFIX-$(printf %04d $j).png"
-		#-colors 6 \
-		#-colors 6 \
-		##-depth 2 \
-		##-colors 16 \
-		#
-		#-depth 3 \
-		#-colors 4 \
-		#-depth 2 \
 		#-colors 4 \
 #		-colors 2 \
 #		-fuzz 50% \
